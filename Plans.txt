@@ -1,0 +1,18 @@
+Plan for RevUC Hackathon 2024
+Project: HealthSphere - AI Driven Health Tracking and Emergency Support
+
+A Home page with data related to medpace trials (research on that) and use tembo for fetching that data. 
+use ML on that to identify somestuff. 
+Data Visualization on this data for / or /home page
+
+/ or /home page will have a login or sign up page, that asks for simillar data as the dataset that we get has, then we use ML, to predict if they have any issues or if they are just fine. 
+
+Taipy: Use Taipy to do the data visualization
+
+Enable UC, remind people to use their Meds. 
+
+
+Backend: Flask & JavaScript
+
+Frontend: HTML, CSS, and JavaScript & Taipy
+
