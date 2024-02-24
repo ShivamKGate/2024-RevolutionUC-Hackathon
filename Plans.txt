@@ -14,5 +14,8 @@ Enable UC, remind people to use their Meds.
 
 Backend: Flask & JavaScript
 
-Frontend: HTML, CSS, and JavaScript & Taipy
+Frontend: HTML, CSS, and JavaScript
 
+Database: Tembo, using PostgreSQL
+
+Other APIs/Libraries: Auth0? & Taipy

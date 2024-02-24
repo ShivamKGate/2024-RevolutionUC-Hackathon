@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello, World!</title>
+    <title>HealthSphere: Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    <div class="top-section">
+        <img src="logo.png" alt="Project Logo" class="logo">
+        <h1 class="project-heading">HealthSphere: AI Driven Health Tracking and Emergency Support</h1>
+        <div class="button-container">
+            <button class="login-button">Login</button>
+            <button class="signup-button">SignUp</button>
+        </div>
+    </div>
+    <div class="dashboard-section">
+        <!-- Placeholder for the dashboard content -->
+    </div>
 </body>
 </html>

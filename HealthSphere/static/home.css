@@ -1,0 +1,41 @@
+/* Styling for the top section */
+.top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: transparent; /* Change the background color as needed */
+}
+
+.logo {
+    width: 50px; /* Adjust the width of the logo as needed */
+}
+
+.project-heading {
+    margin: 0;
+    font-size: 24px;
+}
+
+.button-container {
+    display: flex;
+}
+
+.login-button,
+.signup-button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    background-color: #007bff; /* Change button colors as needed */
+    color: #fff;
+    cursor: pointer;
+}
+
+.login-button:hover,
+.signup-button:hover {
+    background-color: #0056b3; /* Change button hover colors as needed */
+}
+
+/* Styling for the dashboard section */
+.dashboard-section {
+    /* Add styling for the dashboard section as needed */
+}
