@@ -9,12 +9,63 @@
         <img src="logo.png" alt="Project Logo" class="logo">
         <h1 class="project-heading">HealthSphere: AI Driven Health Tracking and Emergency Support</h1>
         <div class="button-container">
-            <button class="login-button">Login</button>
-            <button class="signup-button">SignUp</button>
+            <button class="login-button" onclick="openForm('login')">Login</button>
+            <button class="signup-button" onclick="openForm('signup')">SignUp</button>
         </div>
     </div>
     <div class="dashboard-section">
         <!-- Placeholder for the dashboard content -->
     </div>
+
+    <div id="login-form" class="form-container hidden">
+        <h2 id="form-title">Login</h2>
+        <form action="/login" method="post">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="button" id="form-button">Login</button>
+        </form>
+        <p id="form-switch">Don't have an account? <span id="switch-button" onclick="openForm('signup')">Sign up</span></p>
+    </div>
+
+    <div id="signup-form" class="form-container hidden">
+        <h2 id="form-title">Sign Up</h2>
+        <form action="/signup" method="post">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="button" id="form-button">Sign Up</button>
+        </form>
+        <p id="form-switch">Already have an account? <span id="switch-button" onclick="openForm('login')">Login</span></p>
+    </div>
+
+    <div class="overlay hidden"></div>
+
+    <script>
+        function openForm(formType) {
+            const loginForm = document.querySelector("#login-form");
+            const signupForm = document.querySelector("#signup-form");
+            const overlay = document.querySelector(".overlay");
+
+            if (formType === 'login') {
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+            } else {
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+            }
+            overlay.classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
