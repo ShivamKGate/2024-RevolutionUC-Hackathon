@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="top-section">
-        <img src="logo.png" alt="Project Logo" class="logo">
+        <img src="{{ url_for('static', filename='bg.jpg') }}" alt="Project Logo" class="logo">
         <h1 class="project-heading">HealthSphere: AI Driven Health Tracking and Emergency Support</h1>
         <div class="button-container">
             <button class="login-button" onclick="openForm('login')">Login</button>
