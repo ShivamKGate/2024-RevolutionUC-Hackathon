@@ -1,15 +1,11 @@
-<<<<<<< HEAD
 from flask import Flask, render_template, redirect, request, session
 from werkzeug.security import generate_password_hash, check_password_hash
 import psycopg2
-=======
-from flask import Flask, render_template, redirect
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
->>>>>>> 175ce8d22e39294b9a34b53096158fa47d3b4c92
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -80,10 +76,7 @@ def logout():
 
 if __name__ == '__main__':
     app.run(debug=True)
-<<<<<<< HEAD
-=======
 
 def theMLPART():
     
     print("POOPY")
->>>>>>> 175ce8d22e39294b9a34b53096158fa47d3b4c92
