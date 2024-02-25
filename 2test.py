@@ -3,16 +3,26 @@ import pandas as pd
 
 # Read the data
 data = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data1.csv')
+print(data)
 
-# Define the number of bins for the histogram
-nb_bins = 10
+# Count the occurrences of each unique status
+status_counts_updated = data['Status'].value_counts()
 
-# Define the GUI page
-page = f"""
-Histogram
-<|{data}|chart|type=histogram|>
+myList = []
+
+for keys in status_counts_updated.keys():
+    myList.append((keys, status_counts_updated[keys]))
+
+my_data = pd.DataFrame(myList, columns=['Status', 'Count'])
+print(my_data)
+
+page = """
+#Status vs Count
+<|{my_data}|chart|type=bar|x=Status|y=Count|>
 """
 
-# Create the GUI instance and run it
+# Correcting the usage of the `gui` module
 gui_instance = gui.Gui(page)
 gui_instance.run(use_reloader=True)
+
+print(myList)

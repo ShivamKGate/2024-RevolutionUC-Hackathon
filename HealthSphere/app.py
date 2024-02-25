@@ -16,13 +16,6 @@ except Exception as e:
 @app.route("/")
 @app.route("/home")
 def home():
-    nb_points = 10
-    data = pd.read_csv('clinical_trials.csv')
-    page = """
-    <|{nb_points}|slider|min=0|max=24|>
-    <|{data[:nb_points]}|chart|min=0|max=40|>
-    """
-    gui(page).run(use_reloader=True)
     return render_template("home.html")
 
 @app.route("/dashboard", methods=["GET", "POST"])
