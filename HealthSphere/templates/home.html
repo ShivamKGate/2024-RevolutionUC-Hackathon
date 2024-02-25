@@ -20,9 +20,7 @@
             <button class="signup-button" onclick="showSignUp()">SignUp</button>
         </div>
     </div>
-    <div class="dashboard-section">
-        <!-- Placeholder for the dashboard content -->
-    </div>
+
 
     <script>
         function showLogIn() {
@@ -36,7 +34,7 @@
             await window.Clerk.load();
 
             window.Clerk.openSignIn({
-                redirectUrl: test(),
+                redirectUrl: '/getdata',
             });
             });
             document.body.appendChild(script);
@@ -52,7 +50,9 @@
             script.addEventListener('load', async function () {
             await window.Clerk.load();
             
-            window.Clerk.openSignUp({});
+            window.Clerk.openSignUp({
+                redirectUrl: '/getdata',
+            });
             });
             document.body.appendChild(script);
         }

@@ -2,8 +2,43 @@
 <html>
 <head>
     <title>Hello, World!</title>
+    <!-- Add ClerkJS script -->
+    <script defer
+        async
+        crossorigin="anonymous"
+        data-clerk-publishable-key="pk_test_bGVhZGluZy1yYXR0bGVyLTMyLmNsZXJrLmFjY291bnRzLmRldiQ"
+        src="https://leading-rattler-32.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
+        type="text/javascript">
+    </script>
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    <div class="top-section">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Project Logo" class="logo">
+        <h1 class="project-heading">HealthSphere: AI Driven Health Tracking and Emergency Support</h1>
+        <div class="button-container">
+            <!-- Call the logout function when the button is clicked -->
+            <div id="user-button"></div>
+        </div>
+        <script>
+            const script = document.createElement('script');
+            // Set your Clerk publishable key
+            script.setAttribute('data-clerk-publishable-key', `​pk_test_bGVhZGluZy1yYXR0bGVyLTMyLmNsZXJrLmFjY291bnRzLmRldiQ​`);
+            script.async = true;
+            script.src = `https://leading-rattler-32.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js`;
+            
+            script.addEventListener('load', async function () {
+                await window.Clerk.load();
+            
+                const userButtonComponent = document.querySelector('#user-button');
+            
+                window.Clerk.mountUserButton(userButtonComponent, {
+                appearance: {
+                    baseTheme: dark
+                }
+                });
+            });
+            document.body.appendChild(script);
+        </script>
+    </div>
 </body>
 </html>
