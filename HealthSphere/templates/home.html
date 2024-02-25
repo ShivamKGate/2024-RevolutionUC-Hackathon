@@ -68,19 +68,3 @@
     </script>
 </body>
 </html>
-<script>
-    function openForm(formType) {
-        const loginForm = document.querySelector("#login-form");
-        const signupForm = document.querySelector("#signup-form");
-        const overlay = document.querySelector(".overlay");
-
-        if (formType === 'login') {
-            loginForm.classList.remove('hidden');
-            signupForm.classList.add('hidden');
-        } else {
-            loginForm.classList.add('hidden');
-            signupForm.classList.remove('hidden');
-        }
-        overlay.classList.remove('hidden');
-    }
-</script>
