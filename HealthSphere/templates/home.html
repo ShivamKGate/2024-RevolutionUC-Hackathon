@@ -24,13 +24,6 @@
         <!-- Placeholder for the dashboard content -->
     </div>
 
-    <div id="login-form" class="form-container hidden">
-    </div>
-
-    <div id="signup-form" class="form-container hidden">
-    </div>    
-
-
     <script>
         function showLogIn() {
             const script = document.createElement('script');
@@ -41,9 +34,10 @@
         
             script.addEventListener('load', async function () {
             await window.Clerk.load();
-        
-            const signInComponent = document.querySelector('#login-form');
-            window.Clerk.openSignIn(signInComponent, {});
+
+            window.Clerk.openSignIn({
+                redirectUrl: test(),
+            });
             });
             document.body.appendChild(script);
         }
@@ -57,14 +51,15 @@
         
             script.addEventListener('load', async function () {
             await window.Clerk.load();
-        
-            const signUpComponent = document.querySelector('#signup-form');
-        
-            window.Clerk.openSignUp(signUpComponent, {});
+            
+            window.Clerk.openSignUp({});
             });
             document.body.appendChild(script);
         }
 
+        function test() {
+            console.log('Hello, World!');
+        }
     </script>
 </body>
 </html>
