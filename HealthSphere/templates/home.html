@@ -16,8 +16,8 @@
         <img src="{{ url_for('static', filename='logo.png') }}" alt="Project Logo" class="logo">
         <h1 class="project-heading">HealthSphere: AI Driven Health Tracking and Emergency Support</h1>
         <div class="button-container">
-            <button class="login-button" onclick="openForm('login')">Login</button>
-            <button class="signup-button" onclick="openForm('signup')">SignUp</button>
+            <button class="login-button" onclick="showLogIn()">Login</button>
+            <button class="signup-button" onclick="showSignUp()">SignUp</button>
         </div>
     </div>
     <div class="dashboard-section">
@@ -25,72 +25,62 @@
     </div>
 
     <div id="login-form" class="form-container hidden">
-        <h2 id="form-title">Login</h2>
-        <form action="/login" method="post">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="button" id="form-button">Login</button>
-        </form>
-        <p id="form-switch">Don't have an account? <span id="switch-button" onclick="openForm('signup')">Sign up</span></p>
     </div>
 
     <div id="signup-form" class="form-container hidden">
-        <h2 id="form-title">Sign Up</h2>
-        <form action="/signup" method="post">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="button" id="form-button">Sign Up</button>
-        </form>
-        <p id="form-switch">Already have an account? <span id="switch-button" onclick="openForm('login')">Login</span></p>
     </div>    
 
-    <div class="overlay hidden"></div>
-    
-    <script>
-        function openForm(formType) {
-            const loginForm = document.querySelector("#login-form");
-            const signupForm = document.querySelector("#signup-form");
-            const overlay = document.querySelector(".overlay");
 
-            if (formType === 'login') {
-                loginForm.classList.remove('hidden');
-                signupForm.classList.add('hidden');
-            } else {
-                loginForm.classList.add('hidden');
-                signupForm.classList.remove('hidden');
-            }
-            overlay.classList.remove('hidden');
+    <script>
+        function showLogIn() {
+            const script = document.createElement('script');
+            // Set your Clerk publishable key
+            script.setAttribute('data-clerk-publishable-key', `​pk_test_bGVhZGluZy1yYXR0bGVyLTMyLmNsZXJrLmFjY291bnRzLmRldiQ​`);
+            script.async = true;
+            script.src = `https://leading-rattler-32.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js`;
+        
+            script.addEventListener('load', async function () {
+            await window.Clerk.load();
+        
+            const signInComponent = document.querySelector('#login-form');
+            window.Clerk.openSignIn(signInComponent, {});
+            });
+            document.body.appendChild(script);
         }
-    </script>
 
-    <div id="sign-in"></div>
-    <script>
-        const script = document.createElement('script');
-        // Set your Clerk publishable key
-        script.setAttribute('data-clerk-publishable-key', `​pk_test_bGVhZGluZy1yYXR0bGVyLTMyLmNsZXJrLmFjY291bnRzLmRldiQ​`);
-        script.async = true;
-        script.src = `https://leading-rattler-32.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js`;
-       
-        script.addEventListener('load', async function () {
-          await window.Clerk.load();
-       
-          const signInComponent = document.querySelector('#sign-in');
-       
-          window.Clerk.mountSignIn(signInComponent, {});
-        });
-        document.body.appendChild(script);
+        function showSignUp() {
+            const script = document.createElement('script');
+            // Set your Clerk publishable key
+            script.setAttribute('data-clerk-publishable-key', `​pk_test_bGVhZGluZy1yYXR0bGVyLTMyLmNsZXJrLmFjY291bnRzLmRldiQ​`);
+            script.async = true;
+            script.src = `https://leading-rattler-32.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js`;
+        
+            script.addEventListener('load', async function () {
+            await window.Clerk.load();
+        
+            const signUpComponent = document.querySelector('#signup-form');
+        
+            window.Clerk.openSignUp(signUpComponent, {});
+            });
+            document.body.appendChild(script);
+        }
+
     </script>
 </body>
 </html>
+<script>
+    function openForm(formType) {
+        const loginForm = document.querySelector("#login-form");
+        const signupForm = document.querySelector("#signup-form");
+        const overlay = document.querySelector(".overlay");
+
+        if (formType === 'login') {
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+        } else {
+            loginForm.classList.add('hidden');
+            signupForm.classList.remove('hidden');
+        }
+        overlay.classList.remove('hidden');
+    }
+</script>
