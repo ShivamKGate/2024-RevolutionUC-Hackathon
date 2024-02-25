@@ -83,7 +83,7 @@ body {
 
 .dashboard-image {
     width: 95%; /* Set image width to take up half the container width */
-    height: auto; /* Set image height to scale automatically */
+    height: 100%; /* Set image height to scale automatically */
     display: inline-block; /* Allows images to sit side-by-side */
     margin: 20px 20px; /* Adjust margins as needed */
 }
