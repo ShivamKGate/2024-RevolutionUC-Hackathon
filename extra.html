@@ -1,0 +1,45 @@
+<div class="top-section">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Project Logo" class="logo">
+    <h1 class="project-heading">HealthSphere: AI Driven Health Tracking and Emergency Support</h1>
+    <div class="button-container">
+        <!-- Clerk's authentication components -->
+        <clerk-sign-in />
+        <clerk-sign-up />
+    </div>
+</div>
+<div class="dashboard-section">
+    <!-- Placeholder for the dashboard content -->
+</div>
+
+<!-- Your existing login/signup forms -->
+<div id="login-form" class="form-container hidden">
+    <!-- Your existing login form content -->
+</div>
+
+<div id="signup-form" class="form-container hidden">
+    <!-- Your existing signup form content -->
+</div>
+
+<div class="overlay hidden"></div>
+<!-- Add this script to your site's <body> element -->
+    <script defer>
+        // Replace 'your-domain' and 'your-clerk-publishable-key' with your actual values
+        const clerkPublishableKey = 'pk_test_bGVhZGluZy1yYXR0bGVyLTMyLmNsZXJrLmFjY291bnRzLmRldiQ';
+        const frontendApi = 'leading-rattler-32.clerk.accounts.dev';
+        const version = '@4'; // Set to appropriate version
+    
+        // Creates asynchronous script
+        const script = document.createElement('script');
+        script.setAttribute('data-clerk-frontend-api', frontendApi);
+        script.setAttribute('data-clerk-publishable-key', clerkPublishableKey);
+        script.async = true;
+        script.src = `https://${frontendApi}/npm/@clerk/clerk-js${version}/dist/clerk.browser.js`;
+    
+        // Adds listener to initialize ClerkJS after it's loaded
+        script.addEventListener('load', async function () {
+        await window.Clerk.load({
+            // Set load options here...
+        });
+        });
+        document.body.appendChild(script);
+    </script>      

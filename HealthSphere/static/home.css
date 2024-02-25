@@ -11,6 +11,15 @@ body {
     background-attachment: fixed;
 }
 
+#clerk-components {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+
+}
+
 .top-section {
     display: flex;
     align-items: center;

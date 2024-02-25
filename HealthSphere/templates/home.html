@@ -2,7 +2,14 @@
 <html>
 <head>
     <title>HealthSphere: Home</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}"> 
+    <script defer
+        async
+        crossorigin="anonymous"
+        data-clerk-publishable-key="pk_test_bGVhZGluZy1yYXR0bGVyLTMyLmNsZXJrLmFjY291bnRzLmRldiQ"
+        src="https://leading-rattler-32.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js"
+        type="text/javascript">
+    </script>
 </head>
 <body>
     <div class="top-section">
@@ -47,18 +54,10 @@
             <button type="submit" class="button" id="form-button">Sign Up</button>
         </form>
         <p id="form-switch">Already have an account? <span id="switch-button" onclick="openForm('login')">Login</span></p>
-    </div>
+    </div>    
 
     <div class="overlay hidden"></div>
-    <script
-    async
-    crossorigin="anonymous"
-    data-clerk-publishable-key="pk_test_bGVhZGluZy1yYXR0bGVyLTMyLmNsZXJrLmFjY291bnRzLmRldiQ"
-    onload="window.Clerk.load()"
-    src="https://leading-rattler-32.clerk.accounts.dev/npm/@clerk/clerk-js@4/dist/clerk.browser.js"
-    type="text/javascript">
-    </script>
-  
+    
     <script>
         function openForm(formType) {
             const loginForm = document.querySelector("#login-form");
@@ -74,6 +73,24 @@
             }
             overlay.classList.remove('hidden');
         }
+    </script>
+
+    <div id="sign-in"></div>
+    <script>
+        const script = document.createElement('script');
+        // Set your Clerk publishable key
+        script.setAttribute('data-clerk-publishable-key', `​pk_test_bGVhZGluZy1yYXR0bGVyLTMyLmNsZXJrLmFjY291bnRzLmRldiQ​`);
+        script.async = true;
+        script.src = `https://leading-rattler-32.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js`;
+       
+        script.addEventListener('load', async function () {
+          await window.Clerk.load();
+       
+          const signInComponent = document.querySelector('#sign-in');
+       
+          window.Clerk.mountSignIn(signInComponent, {});
+        });
+        document.body.appendChild(script);
     </script>
 </body>
 </html>
