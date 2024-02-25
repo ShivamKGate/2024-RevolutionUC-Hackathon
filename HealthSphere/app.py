@@ -91,6 +91,11 @@ def dashboard():
 
 @app.route("/getdata", methods=["GET", "POST"])
 def getdata():
+    return render_template("getdata.html")
+
+@app.route("/submit-data", methods=["GET", "POST"])
+def submitdata():
+    session['username'] = "admin"
     if 'username' in session:
         username = session['username']
         if request.method == 'POST':
@@ -128,14 +133,8 @@ def getdata():
                     cur.close()
                     conn.close()
 
-                    return redirect('/dashboard')
-
-    
-    return redirect('/getdata')
-
-@app.route("/submit-data", methods=["GET", "POST"])
-def submitdata():
-    return render_template("dashboard.html")
+                    return render_template("dashboard.html", age = age, gender = gender, weight = weight, occupation = occupation, sleep_duration = sleep_duration, blood_pressure = blood_pressure, heart_rate = heart_rate, daily_steps = daily_steps)
+    return redirect("/dashboard")
 
 if __name__ == "__main__":
     app.run(debug=True)
