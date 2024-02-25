@@ -19,8 +19,6 @@ def home():
     # gui_instance.run(use_reloader=True)
     return render_template("home.html")
 
-<<<<<<< HEAD
-=======
 # nb_points = 10000
 # data1 = pd.read_csv('data.csv')
 # page = """
@@ -86,7 +84,6 @@ def home():
 # print(gui_instance)
 # gui_instance.run()
 
->>>>>>> d30e23cab52d40cabaa9623a4631092ec53f0b14
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
     return render_template("dashboard.html")
