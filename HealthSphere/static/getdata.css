@@ -1,0 +1,110 @@
+/* Styling for the top section */
+html 
+body {
+    margin: 20px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-image: url('../static/bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#clerk-components {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+
+}
+
+.top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px;
+    margin: 0px 20px;
+    background-color: transparent; /* Change the background color as needed */
+    top: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 3; /* Ensure the top section is above other content */
+}
+
+.logo {
+    width: 100px; /* Adjust the width of the logo as needed */
+}
+
+.project-heading {
+    margin: 0;
+    font-size: 24px;
+    text-align: center; /* Center the project heading */
+}
+
+.button-container {
+    display: flex;
+    align-items: center; /* Align buttons vertically center */
+}
+
+.login-button,
+.signup-button {
+    display: inline-block;
+    margin: auto;
+    width: fit-content;
+    border: 1px solid #0aaac2;
+    padding: 14px 50px;
+    border-radius: 6px;
+    text-decoration: none;
+    background: #000000;
+    color: #fff;
+    transition: background 0.5s;
+}
+
+.login-button:hover,
+.signup-button:hover {
+    background: #16e0ff;
+}
+
+/* Styling for the dashboard section */
+.dashboard-section {
+    margin-top: 70px; /* Adjust margin-top based on the height of top section */
+    /* Add styling for the dashboard section as needed */
+}
+
+/* Add this to your home.css file */
+body {
+    position: relative;
+    height: 100vh; /* Ensure full height of the viewport */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 2; /* Ensure the forms are above the overlay */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1; /* Ensure the overlay is below the forms */
+}
+
+.hidden {
+    display: none;
+}

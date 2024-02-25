@@ -4,6 +4,7 @@ from taipy import gui
 import pandas as pd
 
 app = Flask(__name__)
+app.secret_key = '65cc6c216e0429368f170452'
 
 # PostgreSQL connection string
 conn_str = 'postgresql://postgres:Fwc3StngKebReDyv@org-revuc-2024-inst-revuc.data-1.use1.tembo.io:5432/postgres'
@@ -95,6 +96,7 @@ def getdata():
 
 @app.route("/submit-data", methods=["GET", "POST"])
 def submitdata():
+    user_data = {}
     session['username'] = "admin"
     if 'username' in session:
         username = session['username']
@@ -102,39 +104,55 @@ def submitdata():
             age = request.form['age']
             gender = request.form['gender']
             weight = request.form['weight']
+            height = request.form['height']
             occupation = request.form['occupation']
             sleep_duration = request.form['sleep_duration']
             blood_pressure = request.form['blood_pressure']
             heart_rate = request.form['heart_rate']
             daily_steps = request.form['daily_steps']
             
-            if age and gender and weight and occupation and sleep_duration and blood_pressure and heart_rate and daily_steps:
+            if age and gender and weight and height and occupation and sleep_duration and blood_pressure and heart_rate and daily_steps:
                  # Create a cursor object
-                    cur = conn.cursor()
+                    try:
+                        
+                        cur = conn.cursor()
 
-                    # Define your SQL statement for updating data
-                    sql = """UPDATE users
-                             SET age = %s, gender = %s, weight = %s, occupation = %s,
-                                 sleep_duration = %s, blood_pressure = %s,
-                                 heart_rate = %s, daily_steps = %s
-                             WHERE username = %s;"""
+                        # Define your SQL statement for updating data
+                        sql = """UPDATE users
+                                SET age = %s, gender = %s, weight = %s, occupation = %s,
+                                    sleep_duration = %s, blood_pressure = %s,
+                                    heart_rate = %s, daily_steps = %s
+                                WHERE username = %s;"""
 
-                    # Define the values you want to update
-                    values = (age, gender, weight, occupation, sleep_duration, blood_pressure,
-                              heart_rate, daily_steps, username)
+                        # Define the values you want to update
+                        values = (age, gender, weight, occupation, sleep_duration, blood_pressure,
+                                heart_rate, daily_steps, username)
 
-                    # Execute the SQL statement with the values
-                    cur.execute(sql, values)
+                        # Execute the SQL statement with the values
+                        cur.execute(sql, values)
 
-                    # Commit the transaction
-                    conn.commit()
+                        # Commit the transaction
+                        conn.commit()
 
-                    # Close the cursor and connection
-                    cur.close()
-                    conn.close()
+                        # Close the cursor and connection
+                        cur.close()
+                        conn.close()
+                    except Exception as e:
+                        print(f"Error: {e}")
+                    user_data = {
+                        "age": age, 
+                        "gender": gender,
+                        "weight": weight,
+                        "height": height,
+                        "occupation": occupation,
+                        "sleep_duration": sleep_duration,
+                        "blood_pressure": blood_pressure,
+                        "heart_rate": heart_rate,
+                        "daily_steps": daily_steps
+                    }
 
-                    return render_template("dashboard.html", age = age, gender = gender, weight = weight, occupation = occupation, sleep_duration = sleep_duration, blood_pressure = blood_pressure, heart_rate = heart_rate, daily_steps = daily_steps)
-    return redirect("/dashboard")
+                    return render_template("dashboard.html", user_data=user_data)
+    return render_template("dashboard.html", user_data=user_data)
 
 if __name__ == "__main__":
     app.run(debug=True)
