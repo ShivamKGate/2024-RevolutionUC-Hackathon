@@ -55,25 +55,26 @@
     <div class="health-metrics">
         <div class="metric bmi">
             <h3>Calculated BMI:</h3>
-            <p id="bmi-value">Answer (e.g. Normal)</p>
+            <p id="bmi-value">Weight in kilograms / (Height in meters)^2</p>
         </div>
         <div class="metric sleep-score">
             <h3>Sleep Score:</h3>
-            <p id="sleep-score-value">Answer</p>
+            <p id="sleep-score-value">Assessed based on sleep duration, quality, and consistency</p>
         </div>
         <div class="metric blood-pressure">
             <h3>Blood Pressure Level:</h3>
-            <p id="bp-level-value">Answer</p>
+            <p id="bp-level-value">Systolic Pressure / Diastolic Pressure mmHg</p>
         </div>
         <div class="metric stress-level">
             <h3>Stress Level:</h3>
-            <div id="stress-level-indicator">Answer</div>
+            <div id="stress-level-indicator"></div>
         </div>
         <div class="metric activity-level">
             <h3>Activity Level:</h3>
-            <div id="activity-level-indicator">Answer</div>
+            <div id="activity-level-indicator"></div>
         </div>
     </div>
+    
 </body>
 </html>
 <script>
@@ -94,4 +95,94 @@
         // Implement similar functions for sleep score, blood pressure level, stress level, and activity level
         // Update the corresponding
 
+</script>
+<script>
+    // Function to calculate BMI
+    function calculateBMI(weight, height) {
+      return (weight / (height * height)).toFixed(2);
+    }
+  
+    // Function to calculate sleep score
+    function calculateSleepScore(hours) {
+      return hours >= 8 ? 10 : (hours / 8 * 10).toFixed(1);
+    }
+  
+    // Function to assess blood pressure
+    function assessBloodPressure(systolic, diastolic) {
+      if (systolic < 110 && diastolic < 70) {
+        return 'Low';
+      } else if (systolic > 130 || diastolic > 90) {
+        return 'High';
+      } else {
+        return 'Normal';
+      }
+    }
+
+    // Function to calculate stress level
+    function calculateStressLevel(occupation, sleepHours) {
+        const highStressOccupations = ['tech', 'doctor', 'nurse', 'engineer'];
+        const isHighStressOccupation = highStressOccupations.includes(occupation.toLowerCase());
+        const sleepDeprived = sleepHours < 7;
+
+        if (isHighStressOccupation && sleepDeprived) {
+          return 'High';
+        } else if (isHighStressOccupation || sleepDeprived) {
+          return 'Medium';
+        } else {
+          return 'Low';
+        }
+    }
+
+    // Function to determine activity level based on steps
+    function determineActivityLevel(steps) {
+        if (steps < 5000) {
+          return 'Low';
+        } else if (steps < 8000) {
+          return 'Medium';
+        } else if (steps < 15000) {
+          return 'Active';
+        } else {
+          return 'Very Active';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Calculate and display BMI
+        const weight = parseFloat(document.getElementById('weight').textContent);
+        const heightInMeters = parseFloat(document.getElementById('height').textContent) / 100;
+        if (!isNaN(weight) && !isNaN(heightInMeters)) {
+            const bmi = calculateBMI(weight, heightInMeters);
+            document.getElementById('bmi-value').textContent = `Calculated BMI: ${bmi}`;
+        }
+    
+        // Calculate and display sleep score
+        const sleepHours = parseFloat(document.getElementById('sleep-duration').textContent);
+        if (!isNaN(sleepHours)) {
+            const sleepScore = calculateSleepScore(sleepHours);
+            document.getElementById('sleep-score-value').textContent = `Sleep Score: ${sleepScore}`;
+        }
+    
+        // Display blood pressure assessment
+        const bloodPressure = document.getElementById('blood-pressure').textContent.split('/');
+        const systolicBP = parseFloat(bloodPressure[0]);
+        const diastolicBP = parseFloat(bloodPressure[1]);
+        if (!isNaN(systolicBP) && !isNaN(diastolicBP)) {
+            const bpAssessment = assessBloodPressure(systolicBP, diastolicBP);
+            document.getElementById('bp-level-value').textContent = `Blood Pressure Level: ${bpAssessment}`;
+        }
+
+        // Calculate and display stress level
+        const occupation = document.getElementById('occupation').textContent;
+        if (occupation && !isNaN(sleepHours)) {
+            const stressLevel = calculateStressLevel(occupation, sleepHours);
+            document.getElementById('stress-level-indicator').textContent = `Stress Level: ${stressLevel}`;
+        }
+
+        // Determine and display activity level
+        const steps = parseInt(document.getElementById('daily-steps').textContent);
+        if (!isNaN(steps)) {
+            const activityLevel = determineActivityLevel(steps);
+            document.getElementById('activity-level-indicator').textContent = `Activity Level: ${activityLevel}`;
+        }
+    });
 </script>
