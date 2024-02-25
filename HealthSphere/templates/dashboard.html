@@ -2,8 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Hello, World!</title>
+    <title>Dashboard</title>
     <!-- Add ClerkJS script -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard.css') }}">
+
     <script defer="" async="" crossorigin="anonymous" data-clerk-publishable-key="pk_test_bGVhZGluZy1yYXR0bGVyLTMyLmNsZXJrLmFjY291bnRzLmRldiQ" src="https://leading-rattler-32.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" type="text/javascript">
     </script>
 </head>
@@ -36,5 +38,60 @@
             document.body.appendChild(script);
         </script>
     </div>
+    <!-- User Information Grid -->
+    <div class="user-info-grid">
+        <div>Age: <span id="age">{{user_data.age}}</span></div>
+        <div>Gender: <span id="gender">{{user_data.gender}}</span></div>
+        <div>Weight: <span id="weight">{{user_data.weight}}</span></div>
+        <div>Height: <span id="height">{{user_data.height}}</span></div>
+        <div>Occupation: <span id="occupation">{{user_data.occupation}}</span></div>
+        <div>Sleep Duration: <span id="sleep-duration">{{user_data.sleep_duration}}</span></div>
+        <div>Blood Pressure: <span id="blood-pressure">{{user_data.blood_pressure}}</span></div>
+        <div>Heart Rate: <span id="heart-rate">{{user_data.heart_rate}}</span></div>
+        <div>Daily Steps: <span id="daily-steps">{{user_data.daily_steps}}</span></div>
+    </div>
+
+    <!-- Health Metrics Section -->
+    <div class="health-metrics">
+        <div class="metric bmi">
+            <h3>Calculated BMI:</h3>
+            <p id="bmi-value">Answer (e.g. Normal)</p>
+        </div>
+        <div class="metric sleep-score">
+            <h3>Sleep Score:</h3>
+            <p id="sleep-score-value">Answer</p>
+        </div>
+        <div class="metric blood-pressure">
+            <h3>Blood Pressure Level:</h3>
+            <p id="bp-level-value">Answer</p>
+        </div>
+        <div class="metric stress-level">
+            <h3>Stress Level:</h3>
+            <div id="stress-level-indicator">Answer</div>
+        </div>
+        <div class="metric activity-level">
+            <h3>Activity Level:</h3>
+            <div id="activity-level-indicator">Answer</div>
+        </div>
+    </div>
 </body>
 </html>
+<script>
+    // This JavaScript file will handle the dynamic updating of the health metrics.
+    // You will need to implement the functions to calculate the BMI, sleep score, blood pressure level, stress level, and activity level.
+    // The following are placeholders for these calculations:
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Example of how to set the BMI
+        const weight = parseFloat(document.getElementById('weight').textContent);
+        const height = parseFloat(document.getElementById('height').textContent);
+        if (weight && height) {
+            const bmi = calculateBMI(weight, height);
+            document.getElementById('bmi-value').textContent = bmi;
+        }
+    });
+
+        // Implement similar functions for sleep score, blood pressure level, stress level, and activity level
+        // Update the corresponding
+
+</script>
