@@ -18,73 +18,71 @@ except Exception as e:
 @app.route("/")
 @app.route("/home")
 def home():
-    nb_points = 10000
-    data1 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data.csv')
-    page1 = """
-    #Enrollment vs Year
-    <|{nb_points}|slider|min=10000|max=15000|>
-    <|{data1[:nb_points]}|chart|min=1980|max=2025|>
-    """
-    # Read the data
-    data2 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data1.csv')
+    # nb_points = 10000
+    # data1 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data.csv')
+    # page1 = """
+    # #Enrollment vs Year
+    # <|{nb_points}|slider|min=10000|max=15000|>
+    # <|{data1[:nb_points]}|chart|min=1980|max=2025|>
+    # """
+    # # Read the data
+    # data2 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data1.csv')
 
-    # Count the occurrences of each unique status
-    status_counts_updated = data2['Status'].value_counts()
+    # # Count the occurrences of each unique status
+    # status_counts_updated = data2['Status'].value_counts()
 
-    myList = []
+    # myList = []
 
-    for keys in status_counts_updated.keys():
-        myList.append((keys, status_counts_updated[keys]))
+    # for keys in status_counts_updated.keys():
+    #     myList.append((keys, status_counts_updated[keys]))
 
-    my_data = pd.DataFrame(myList, columns=['Status', 'Count'])
-    print(my_data)
+    # my_data = pd.DataFrame(myList, columns=['Status', 'Count'])
+    # print(my_data)
 
-    page2 = """
-    #Status vs Count
-    <|{my_data}|chart|type=bar|x=Status|y=Count|>
-    """
-    data3 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data2.csv')
+    # page2 = """
+    # #Status vs Count
+    # <|{my_data}|chart|type=bar|x=Status|y=Count|>
+    # """
+    # data3 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data2.csv')
 
-    # Count the occurrences of each unique condition
-    status_counts_updated = data3['Condition'].value_counts()
-    print(status_counts_updated)
-    myList = []
+    # # Count the occurrences of each unique condition
+    # status_counts_updated = data3['Condition'].value_counts()
+    # print(status_counts_updated)
+    # myList = []
 
-    for keys in status_counts_updated.keys():
-        myList.append((keys, status_counts_updated[keys]))  # Using strip() to remove leading/trailing spaces
-    my_data2 = pd.DataFrame(myList, columns=['Condition', 'Count'])
-    print(my_data2)
-    # Define the GUI page to include a pie chart based on 'Condition' and 'Phase'
-    page3 = """
-    # Phase vs Condition
-    <|{my_data2}|chart|type=pie|values=Count|labels=Condition|>
-    """
-        # Load the data
-    data4 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data2.csv')
+    # for keys in status_counts_updated.keys():
+    #     myList.append((keys, status_counts_updated[keys]))  # Using strip() to remove leading/trailing spaces
+    # my_data2 = pd.DataFrame(myList, columns=['Condition', 'Count'])
+    # print(my_data2)
+    # # Define the GUI page to include a pie chart based on 'Condition' and 'Phase'
+    # page3 = """
+    # # Phase vs Condition
+    # <|{my_data2}|chart|type=pie|values=Count|labels=Condition|>
+    # """
+    #     # Load the data
+    # data4 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data2.csv')
 
-    # Count the occurrences of each unique condition
-    status_counts_updated = data4['Condition'].value_counts()
-    print(status_counts_updated)
+    # # Count the occurrences of each unique condition
+    # status_counts_updated = data4['Condition'].value_counts()
+    # print(status_counts_updated)
 
-    my_data3 = {
-        "Condition": status_counts_updated.index.tolist(),
-        "Count": status_counts_updated.values.tolist()
-    }
+    # my_data3 = {
+    #     "Condition": status_counts_updated.index.tolist(),
+    #     "Count": status_counts_updated.values.tolist()
+    # }
 
-    options = {
-        # Fill to x axis
-        "fill": "tozeroy"
-    }
-    # Define the GUI page to include a pie chart based on 'Condition' and 'Phase'
-    page4 = """
-    # Phase vs Condition
-    <|{my_data3}|chart|x=Count|y=Condition|options={options}|>
-    """
+    # options = {
+    #     # Fill to x axis
+    #     "fill": "tozeroy"
+    # }
+    # # Define the GUI page to include a pie chart based on 'Condition' and 'Phase'
+    # page4 = """
+    # # Phase vs Condition
+    # <|{my_data3}|chart|x=Count|y=Condition|options={options}|>
+    # """
 
-
-
-    gui_instance = gui.Gui(page1)
-    gui_instance.run(use_reloader=True)
+    # gui_instance = gui.Gui(page1)
+    # gui_instance.run(use_reloader=True)
     return render_template("home.html")
 
 @app.route("/dashboard", methods=["GET", "POST"])
