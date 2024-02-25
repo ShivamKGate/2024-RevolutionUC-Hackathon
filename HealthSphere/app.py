@@ -1,3 +1,12 @@
+# Navigate to the project directory
+# Set up and activate a virtual environment: python3 -m venv venv && source venv/bin/activate
+# Install required Python libraries: pip install -r requirements.txt
+# Run the Flask backend server: python app.py
+# Access the Flask backend server in a web browser: http://127.0.0.1:5000
+# Open another Terminal window and navigate to the project directory
+# Launch the Taipy Dashboard server: python taipyserver.py
+# Access the HealthSphere application in a web browser: http://127.0.0.1:8080
+
 from flask import Flask, render_template, redirect, request, session
 import psycopg2
 
