@@ -2,13 +2,12 @@ from flask import Flask, render_template, redirect, request, session
 from werkzeug.security import generate_password_hash, check_password_hash
 import psycopg2
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
-from sklearn.model_selection import GridSearchCV
+# from sklearn.model_selection import train_test_split
+# from sklearn.ensemble import RandomForestClassifier
+# from sklearn.metrics import accuracy_score
+# from sklearn.model_selection import GridSearchCV
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
 
 # Connection string for PostgreSQL
 conn_str = 'postgresql://postgres:Fwc3StngKebReDyv@org-revuc-2024-inst-revuc.data-1.use1.tembo.io:5432/postgres'
@@ -16,6 +15,7 @@ conn_str = 'postgresql://postgres:Fwc3StngKebReDyv@org-revuc-2024-inst-revuc.dat
 try:
     # Create a new database session
     conn = psycopg2.connect(conn_str)
+    print("WORKEDDDDD!")
 except Exception as e:
     print(f"Unable to connect to the database: {e}")
 
