@@ -2,7 +2,7 @@ from taipy import gui
 import pandas as pd
 
 nb_points = 10000
-data = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data.csv')
+data = pd.read_csv('./HealthSphere/data.csv')
 page = """
 #Enrollment vs Year
 <|{nb_points}|slider|min=10000|max=15000|>
@@ -11,4 +11,4 @@ page = """
 
 # Correcting the usage of the `gui` module
 gui_instance = gui.Gui(page)
-gui_instance.run(use_reloader=True)
+gui_instance.run(use_reloader=True, port=8080)

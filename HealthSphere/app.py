@@ -4,6 +4,7 @@ from taipy import gui
 import pandas as pd
 
 app = Flask(__name__)
+app.secret_key = '65cc6c216e0429368f170452'
 
 # PostgreSQL connection string
 conn_str = 'postgresql://postgres:Fwc3StngKebReDyv@org-revuc-2024-inst-revuc.data-1.use1.tembo.io:5432/postgres'
@@ -14,76 +15,76 @@ try:
 except Exception as e:
     print("Failed to connect to PostgreSQL")
 
-
 @app.route("/")
 @app.route("/home")
 def home():
-    # nb_points = 10000
-    # data1 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data.csv')
-    # page1 = """
-    # #Enrollment vs Year
-    # <|{nb_points}|slider|min=10000|max=15000|>
-    # <|{data1[:nb_points]}|chart|min=1980|max=2025|>
-    # """
-    # # Read the data
-    # data2 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data1.csv')
-
-    # # Count the occurrences of each unique status
-    # status_counts_updated = data2['Status'].value_counts()
-
-    # myList = []
-
-    # for keys in status_counts_updated.keys():
-    #     myList.append((keys, status_counts_updated[keys]))
-
-    # my_data = pd.DataFrame(myList, columns=['Status', 'Count'])
-    # print(my_data)
-
-    # page2 = """
-    # #Status vs Count
-    # <|{my_data}|chart|type=bar|x=Status|y=Count|>
-    # """
-    # data3 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data2.csv')
-
-    # # Count the occurrences of each unique condition
-    # status_counts_updated = data3['Condition'].value_counts()
-    # print(status_counts_updated)
-    # myList = []
-
-    # for keys in status_counts_updated.keys():
-    #     myList.append((keys, status_counts_updated[keys]))  # Using strip() to remove leading/trailing spaces
-    # my_data2 = pd.DataFrame(myList, columns=['Condition', 'Count'])
-    # print(my_data2)
-    # # Define the GUI page to include a pie chart based on 'Condition' and 'Phase'
-    # page3 = """
-    # # Phase vs Condition
-    # <|{my_data2}|chart|type=pie|values=Count|labels=Condition|>
-    # """
-    #     # Load the data
-    # data4 = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\HealthSphere\\data2.csv')
-
-    # # Count the occurrences of each unique condition
-    # status_counts_updated = data4['Condition'].value_counts()
-    # print(status_counts_updated)
-
-    # my_data3 = {
-    #     "Condition": status_counts_updated.index.tolist(),
-    #     "Count": status_counts_updated.values.tolist()
-    # }
-
-    # options = {
-    #     # Fill to x axis
-    #     "fill": "tozeroy"
-    # }
-    # # Define the GUI page to include a pie chart based on 'Condition' and 'Phase'
-    # page4 = """
-    # # Phase vs Condition
-    # <|{my_data3}|chart|x=Count|y=Condition|options={options}|>
-    # """
-
-    # gui_instance = gui.Gui(page1)
     # gui_instance.run(use_reloader=True)
     return render_template("home.html")
+
+nb_points = 10000
+data1 = pd.read_csv('data.csv')
+page = """
+#Enrollment vs Year
+<|{nb_points}|slider|min=10000|max=15000|>
+<|{data1[:nb_points]}|chart|min=1980|max=2025|>
+"""
+# # Read the data
+data2 = pd.read_csv('data1.csv')
+
+# Count the occurrences of each unique status
+status_counts_updated = data2['Status'].value_counts()
+
+myList = []
+
+for keys in status_counts_updated.keys():
+    myList.append((keys, status_counts_updated[keys]))
+
+my_data = pd.DataFrame(myList, columns=['Status', 'Count'])
+
+page += """
+#Status vs Count
+<|{my_data}|chart|type=bar|x=Status|y=Count|>
+"""
+
+data3 = pd.read_csv('data2.csv')
+
+# Count the occurrences of each unique condition
+status_counts_updated = data3['Condition'].value_counts()
+myList = []
+
+for keys in status_counts_updated.keys():
+    myList.append((keys, status_counts_updated[keys]))  # Using strip() to remove leading/trailing spaces
+my_data2 = pd.DataFrame(myList, columns=['Condition', 'Count'])
+# Define the GUI page to include a pie chart based on 'Condition' and 'Phase'
+page += """
+# Phase vs Condition
+<|{my_data2}|chart|type=pie|values=Count|labels=Condition|>
+"""
+
+    # Load the data
+data4 = pd.read_csv('data2.csv')
+
+# Count the occurrences of each unique condition
+status_counts_updated = data4['Condition'].value_counts()
+
+my_data3 = {
+    "Condition": status_counts_updated.index.tolist(),
+    "Count": status_counts_updated.values.tolist()
+}
+
+options = {
+    # Fill to x axis
+    "fill": "tozeroy"
+}
+# Define the GUI page to include a pie chart based on 'Condition' and 'Phase'
+page += """
+# Phase vs Condition
+<|{my_data3}|chart|x=Count|y=Condition|options={options}|>
+"""
+print(page)
+gui_instance = gui.Gui(page, flask=app)
+print(gui_instance)
+gui_instance.run()
 
 @app.route("/dashboard", methods=["GET", "POST"])
 def dashboard():
