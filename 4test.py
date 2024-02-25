@@ -7,16 +7,20 @@ data = pd.read_csv('C:\\Users\\skhar\\Downloads\\2024-RevolutionUC-Hackathon\\He
 # Count the occurrences of each unique condition
 status_counts_updated = data['Condition'].value_counts()
 print(status_counts_updated)
-myList = []
 
-for keys in status_counts_updated.keys():
-    myList.append((keys, status_counts_updated[keys]))  # Using strip() to remove leading/trailing spaces
-my_data = pd.DataFrame(myList, columns=['Condition', 'Count'])
-print(my_data)
+my_data = {
+    "Condition": status_counts_updated.index.tolist(),
+    "Count": status_counts_updated.values.tolist()
+}
+
+options = {
+    # Fill to x axis
+    "fill": "tozeroy"
+}
 # Define the GUI page to include a pie chart based on 'Condition' and 'Phase'
 page = """
 # Phase vs Condition
-<|{my_data}|chart|type=pie|values=Count|labels=Condition|>
+<|{my_data}|chart|x=Count|y=Condition|options={options}|>
 """
 
 # Initialize and run the GUI instance
