@@ -16,6 +16,16 @@
             <button class="signup-button" onclick="showSignUp()">SignUp</button>
         </div>
     </div>
+    <div class="dashboard-section"">
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='line.png') }}" alt="Dashboard Image" class="dashboard-image">
+            <img src="{{ url_for('static', filename='bar.png') }}" alt="Dashboard Image" class="dashboard-image">
+        </div><br>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='pie.png') }}" alt="Dashboard Image" class="dashboard-image">
+            <img src="{{ url_for('static', filename='scatter.png') }}" alt="Dashboard Image" class="dashboard-image">
+        </div>
+    </div>
 
 
     <script>

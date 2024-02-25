@@ -71,6 +71,21 @@ body {
 .dashboard-section {
     margin-top: 70px; /* Adjust margin-top based on the height of top section */
     /* Add styling for the dashboard section as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container {
+    text-align: center; /* Center images horizontally */
+    margin-bottom: 20px; /* Space between rows of images */
+}
+
+.dashboard-image {
+    width: 95%; /* Set image width to take up half the container width */
+    height: auto; /* Set image height to scale automatically */
+    display: inline-block; /* Allows images to sit side-by-side */
+    margin: 20px 20px; /* Adjust margins as needed */
 }
 
 /* Add this to your home.css file */
